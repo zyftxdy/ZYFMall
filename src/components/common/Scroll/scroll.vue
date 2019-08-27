@@ -26,7 +26,7 @@ export default {
         }
     },
     mounted(){
-        setTimeout(this.__initScroll, 20)
+        setTimeout(this.__initScroll, 200)
     },
     methods:{
          __initScroll() {
@@ -55,7 +55,10 @@ export default {
         },
         refresh() {
             this.scroll && this.scroll.refresh && this.scroll.refresh()
-        }   
+        },
+        getScrollY(){
+            return this.scroll ? this.scroll.y:0
+        }  
     }
 }
 </script>

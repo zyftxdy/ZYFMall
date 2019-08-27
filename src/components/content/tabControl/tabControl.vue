@@ -51,7 +51,7 @@ export default {
         flex:1;     
     }
     .tab-control-item span {
-    padding: 5px;
+        padding: 5px;
     }
 
     .active {

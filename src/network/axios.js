@@ -2,8 +2,6 @@ import axios from 'axios'
 
 export function request(config){
 
-    return new Promise((resolve,reject) =>{
-        
         const instance = axios.create({
             baseURL:'http://123.207.32.32:8000/api/v1',
             timeout:5000
@@ -25,13 +23,6 @@ export function request(config){
             console.log(err)
         })
 
-        instance(config)
-        .then(res =>{
-            resolve(res)
-        }).catch(err =>{
-            reject(err)
-        })
-    
-    })
+        return instance(config)   
       
 }
