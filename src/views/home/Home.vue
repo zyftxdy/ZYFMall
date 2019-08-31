@@ -16,7 +16,7 @@
         :pullUpLoad="true"
         @pullingUp="loadMore"
       >
-        <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"/>
+        <home-swiper :banners="banners"/>
         <recommend-view :recommends="recommends"/>
         <feature-view/>
         <tab-control 
@@ -84,6 +84,9 @@ export default {
       this.getGoods('new')
       this.getGoods('sell')  
     },
+    updated(){
+      this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
+    },
     mounted(){
       const refresh = debounce(this.$refs.scroll.refresh,200)
       //3.监听item中图片加载完成
@@ -134,9 +137,6 @@ export default {
       },
       backTop() {
         this.$refs.scroll.scrollTo(0, 0, 300)
-      },
-      swiperImageLoad(){
-        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
       },
       //网络请求
       getMultidata(){
