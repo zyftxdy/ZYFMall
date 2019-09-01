@@ -45,7 +45,7 @@ import Scroll from 'components/common/Scroll/scroll'
 import backTop from 'components/content/backTop/backTop'
 
 import {getHomeMultidata,getHomeGoods} from 'network/home'
-import {debounce} from "../../common/utils"
+import {itemLitener} from '../../common/mixin'
 
 export default {
     name:"Home",
@@ -59,6 +59,7 @@ export default {
       Scroll,
       backTop
     },
+    mixins:[itemLitener],
     data(){
       return{
         banners:[],
@@ -88,11 +89,6 @@ export default {
       this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
     },
     mounted(){
-      const refresh = debounce(this.$refs.scroll.refresh,200)
-      //3.监听item中图片加载完成
-      this.$bus.$on('itemImageLoad',() => {
-        refresh()
-      })
     },
     computed:{
       showGoodsList() {
@@ -106,6 +102,8 @@ export default {
     deactivated(){
       this.saveY = this.$refs.scroll.getScrollY()
       //console.log(this.saveY)
+      //2.取消全局事件的监听
+      this.$bus.$off('itemImageLoad',this.itemListener)
     },
     methods:{
       /**
@@ -132,6 +130,7 @@ export default {
         //2.决定backTop是否显示
         this.isShowBackTop = (-position.y) >1000
       },
+      //加载更多
       loadMore(){
         this.getGoods(this.currentType)
       },

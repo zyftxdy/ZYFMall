@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import GridView from 'common/gridView/GridView'
+//import GridView from 'common/gridView/GridView'
 import goodsListItem from './goodListItem'
 export default {
     name:'goodsList',
     components:{
         goodsListItem,
-        GridView
+        //GridView
     },
     props:{
         goods:{

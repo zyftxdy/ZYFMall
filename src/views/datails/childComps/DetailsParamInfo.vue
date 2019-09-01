@@ -39,6 +39,7 @@ export default {
     padding: 10px 15px;
     font-size: 14px;
     border-bottom: 5px solid #f2f5f8;
+    background-color: #fff;
   }
   .info-title{
     line-height: 25px;

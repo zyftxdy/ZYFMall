@@ -24,15 +24,20 @@
         components:{
           navBar  
         },
+        props:{
+            currentIndex: {
+                type: Number,
+                default: 0
+            }
+        },
         data(){
             return{
-                titles:['商品','参数','评论','推荐'],
-                currentIndex:0
+                titles:['商品','参数','评论','推荐']
             }
         },
         methods:{
             titleClick(index){
-                this.currentIndex = index;
+                this.$emit('itemClick', index)
             },
             backClick(){
                 this.$router.back()
