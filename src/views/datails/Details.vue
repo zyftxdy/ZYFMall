@@ -17,7 +17,7 @@
             <details-comment-info ref="comment" :commentInfo="commentInfo" />
             <DetailsReCommentInfo ref="recommend" :goods='recommendList'/>
         </scroll>
-        <details-bottom-bar />
+        <details-bottom-bar @addToCart="addToCart"/>
         <back-top class="back-top" @backTop="backTop" v-show="isShowBackTop">
             <img src="~assets/img/common/top.png" alt="">
         </back-top>
@@ -160,7 +160,21 @@
             },
             titleClick(index){
                 this.$refs.scroll.scrollTo(0, -this.themeTopYs[index],500)
+            },
+            //添加至购物车
+            addToCart(){
+                const product = {}
+                product.id = this.id
+                product.img = this.topImages[0]
+                product.title = this.goods.title
+                product.desc = this.goods.desc
+                product.price = this.goods.nowPrice
+
+                this.$store.dispatch('addCart',product).then( res => {                   
+                    this.$toast.show('已添加至购物车,请及时付款~',1500)
+                })
             }
+
         }
     }
 </script>

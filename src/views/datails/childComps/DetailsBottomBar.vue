@@ -15,8 +15,8 @@
       </div>
     </div>
     <div class="bar-item bar-right">
-      <div class="cart" @click="addToCart">加入购物车</div>
-      <div class="buy">购买</div>
+      <div class="cart" @click="addToCart">添加购物车</div>
+      <div class="buy">立即购买</div>
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@
 	export default {
 		name: "DetailsBottomBar",
     methods: {
-      addToCart() {
+      addToCart() {        
         this.$emit('addToCart')
       }
     }
@@ -57,7 +57,9 @@
   .bar-left .text {
     font-size: 13px;
   }
-
+  .bar-left{
+    padding-right: 15px;
+  }
   .bar-left .icon {
     display: block;
     width: 22px;
@@ -77,7 +79,14 @@
   .bar-right {
     font-size: 15px;
     color: #fff;
-    line-height: 58px;
+    position: relative;
+    right: 10px;
+    /* border: 1px solid red; */
+    border-radius: 25px;
+    overflow: hidden;
+    height: 40px;
+    line-height: 40px;
+    margin: auto;
   }
 
   .bar-right .cart {
